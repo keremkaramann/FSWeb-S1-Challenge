@@ -174,6 +174,7 @@ function indekseGoreFenomen(arr, num) {
   return `${num}. indekste bulunan fenomen: ${arr[num].profile}`;
 }
 //console.log(indekseGoreFenomen(fenomenler, 3));
+
 /*  Görev 4:
 Aşağıdakileri yapmak için profilListesi'ni kullanın:
 1. fenomen dizisini bir parametreden argüman olarak alın
@@ -182,9 +183,16 @@ Aşağıdakileri yapmak için profilListesi'ni kullanın:
 🌟 Dönüş ÖRNEĞİ: ["Instagram", "Cristiano Ronaldo", "Kylie"....]
 */
 
-function profilListesi(/*kod*/) {
+function profilListesi(arr) {
   /*kod*/
+  let newArray = [...arr];
+  let newArray2 = [];
+  for (let key in newArray) {
+    newArray2.push(newArray[key].profile);
+  }
+  return newArray2;
 }
+console.log(profilListesi(fenomenler));
 
 /* Görev 5:
 Aşağıdakileri yapmak için fenomenSil'i kullanın:
