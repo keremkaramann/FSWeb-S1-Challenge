@@ -158,7 +158,7 @@ yukarıda verilen fenomenler dizisindeki verilere erişim alıştırması yapın
 Fenomenler dizisinde bir yazım hatası var 😱 7. sıradaki fenomen 'Justin Bieber' ın soyismi 'Biber' olarak yanlış yazılmış. 
 Bu sorunu düzeltin ve çalışmanızı kontrol etmek için console.log() yapın.*/
 
-//!console.log((fenomenler[6].profile = "Justin Bieber"));
+//console.log((fenomenler[6].profile = "Justin Bieber"));
 
 /*  Görev 3:
 Aşağıdaki işlemleri yapmak için indekseGoreFenomen işlevini kullanın:
@@ -192,7 +192,7 @@ function profilListesi(arr) {
   }
   return newArray2;
 }
-console.log(profilListesi(fenomenler));
+//console.log(profilListesi(fenomenler));
 
 /* Görev 5:
 Aşağıdakileri yapmak için fenomenSil'i kullanın:
@@ -203,14 +203,18 @@ Aşağıdakileri yapmak için fenomenSil'i kullanın:
 5. Ortaya çıkan diziyi döndürün
 
 ÖRNEK: fenomenSil işlevi fenomenler dizisi ve 0 indeks sayısı ile çağrılırsa, veri kümemizden 'Instagram' kaldırılmış olarak döndürür. */
-function fenomenSil(/*kod*/) {
+function fenomenSil(arr, indeks) {
   /*kod*/
+  let newArray = [...arr];
+  newArray.splice(indeks, 1);
+  return newArray;
 }
 
 /* Görev 6:
 Aşağıdakileri yapmak için fenomenEkle'i kullanın:
 1. ilk parametre olarak fenomenler dizisini alın
-2. İKİNCİ, ÜÇÜNCÜ, DÖRDÜNCÜ, BEŞİNCİ ve ALTINCI parametre olarak sırasıyla bir sırano (number), bir profil ismi (profile), takipçi sayısı (followers), gönderim sayısı  (posts) ve bir platform adı (platform) alın.
+2. İKİNCİ, ÜÇÜNCÜ, DÖRDÜNCÜ, BEŞİNCİ ve ALTINCI parametre olarak sırasıyla bir sırano (number), 
+bir profil ismi (profile), takipçi sayısı (followers), gönderim sayısı  (posts) ve bir platform adı (platform) alın.
 3. fenomenler dizisini bir kopyasını oluşturun.
 4. Aşağıdaki formatta bir nesne oluşturun:
   {
@@ -224,8 +228,18 @@ Aşağıdakileri yapmak için fenomenEkle'i kullanın:
 
 ÖRNEK: fenomenEkle(fenomenler, 6, "Workintech", 10000000, 2022, "Instagram") çağrıldığında dizinin sonuna yukarıdaki nesne en sona eklenerek yeni fenomenler dizisini döndürmelidir. */
 
-function fenomenEkle(/*kod*/) {
+function fenomenEkle(arr, num, profile, followers, posts, platform) {
   /*kod*/
+  let newObj = {
+    number: num,
+    profile: profile,
+    followers: followers,
+    posts: posts,
+    platform: platform,
+  };
+  let newArr = [...arr];
+  newArr.push(newObj);
+  return newArr;
 }
 
 /* Görev 7:
@@ -236,8 +250,15 @@ Aşağıdakileri yapmak için enFenomenler'yi kullanın:
 ÖRNEK: enFenomenler(fenomenler) çağrıldığında sonuç olarak ["Instagram", "Cristiano Ronaldo", ... "Khabane lame"] dönemelidir
 */
 
-function enFenomenler(/*kod*/) {
+function enFenomenler(arr) {
   /*kod*/
+  let mostPopular = [];
+  for (let key in arr) {
+    if (arr[key].followers >= 100000000) {
+      mostPopular.push(arr[key].profile);
+    }
+  }
+  return mostPopular;
 }
 
 /* Görev 8:
@@ -249,9 +270,17 @@ Aşağıdakileri yapmak için fenomenGonderimSayisi'nı kullanın:
 ÖRNEK: fenomenGonderimSayisi(fenomenler, 'Will Smith') çağrıldığında "136" dönmelidir
 */
 
-function fenomenGonderimSayisi(/*kod*/) {
+function fenomenGonderimSayisi(arr, profile) {
   /*kod*/
+  let newPosts = "";
+  for (let key in arr) {
+    if (arr[key].profile === profile) {
+      newPosts = arr[key].posts;
+    }
+  }
+  return newPosts;
 }
+//console.log(fenomenGonderimSayisi(fenomenler, "Will Smith"));
 
 /* Görev 9:
 Aşağıdakileri yapmak için platformaGoreCokGonderiYapanFenomen'ni kullanın:
@@ -264,9 +293,19 @@ Not: Gönderi sayısı belli olmayan (NA) hesaba katmayın.
 Örnek: platformaGoreCokGonderiYapanFenomen(fenomenler, 'TikTok') çağrıldığında "charli damelio" dönmelidir
 */
 
-function platformaGoreCokGonderiYapanFenomen(/*kod*/) {
+function platformaGoreCokGonderiYapanFenomen(arr, platform) {
   /*kod*/
+  let mostPopular = 0;
+  let celeb = "";
+  for (const key of arr) {
+    if (key.followers > mostPopular && key.platform == platform) {
+      mostPopular = key.followers;
+      celeb = key.profile;
+    }
+  }
+  return celeb;
 }
+//console.log(platformaGoreCokGonderiYapanFenomen(fenomenler, "Twitter"));
 
 /* ***** GÖREVLERİN SONU ***** */
 
